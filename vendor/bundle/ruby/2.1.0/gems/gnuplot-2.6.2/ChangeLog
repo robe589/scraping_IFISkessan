@@ -1,0 +1,120 @@
+2.6.2
+* llrt: Make SPlot.to_gplot use parent's implementation
+
+2.6.1
+* TheKnight 	Fix bug in SPlot.to_gplot implementation. 
+
+2.6.0
+* better readme, allow for unsetting variables, thanks @kot-behemoth and @evnu
+
+2.5.0
+ * save output to instance variable, thanks for the patch.
+
+2.4.1
+ * Quote escape more strings. Thanks for the tip!
+
+2.4.0
+ * Allow for 3D plots, fix examples. Thanks everybody!
+
+2.3.6
+ * Cleanup readme (thanks blambeau again, really, for the snippets)
+
+2.3.5
+ * Cleanup readme, add examples as real code files (thanks blambeau!)
+
+2.3.4
+ * Include more files in the gem by switching to Jeweler (thanks Jeweler guyz)!
+
+2.3.3
+ * Fix issue #4 (thanks Jakobs)
+ * Fix some unit tests (thanks Nobu!) 
+
+2.3.2 Feb 2010
+ * Add an arbitrary_lines specifier
+
+2.3.1 Feb 2010
+
+* Fix a bug I introduced in 2.3.0
+
+2.3.0 Feb 2010
+
+* incorporate a few patch changes
+
+2.2.3.1 July 18 2009
+	
+* output the raw "to gnuplot" data if $VERBOSE
+
+Version 2.2.2 July 2009
+
+* raise if no executable found, should be windows compat. now
+
+Version 2.2  14-Nov-2005
+
+* Formally added the LICENSE.txt file.  It is the new BSD license as defined
+  by opensource.org.  See that file for details.
+
+* Added Gnuplot.which to try and fix the recurring problem of windows users
+  having to hack code to get things working.
+
+* Added the Gnuplot.gnuplot function so that I can unit test the finding
+  gnuplot executable routine.
+
+* In the Array.to_gplot method the terminating e is added to the output.  This
+  is in response to Bug #2209.
+
+Version 2.1  17-Nov-2004
+
+* Array.to_gplot and Array.to_gsplot now support passing in arrays of
+  arbitrary objects. This is in response to a request by Yoshiki Tsunesada
+  (Tracker ID 1063)
+
+Version 2.0   10-Nov-2004
+
+* The 2.0 version of the gnuplot interface is a cross between the original,
+  object oriented version, and the version 1.0 which was simply a string
+  manipulation library.
+
+
+h3. Version 0.9 
+
+bq. 
+      My first attempt at a Ruby interface to gnuplot was an object interface
+      encapsulating gnuplot language. This was taken directly from the Python
+      gnuplot interface. In spite of my being very familiar with Gnuplot and
+      Ruby and being the author of the RGnuplot package, I found it
+      non-intuitive to use the RGnuplot package.  I found myself constantly
+      looking at the code to figure out what I needed to do.
+      This was not sufficient and did not sit well.
+    
+h3. Version 1.0
+
+bq. 
+      The second attempt at a Ruby interface was to do absolutely nothing but
+      use Ruby's built in string manipulation methods.  This meant that I
+      could simply use my knowledge of Gnuplot without having to worry about
+      objects.
+      While in some ways an improvement over Version 0.9, it still did not sit
+      well with me.
+    
+h3.  Version 2.0 
+
+bq. 
+      After attending RubyConf 2004 I was inspired by Rich Kilmer's use of
+      Ruby to implement domain specific languages.  That is the current
+      implementation of Gnuplot and quite probably the one that I'll stick
+      with for some time.  This version combines the direct mapping of the
+      gnuplot language without wrapping with the ruby syntax and mechanism of
+      adding methods to existing classes to interface Ruby objects with
+      gnuplot.
+    
+h2. Setup 
+
+h3. Version 2.2
+
+    If the 'gnuplot' command is in your path then there is no required
+    setup. If the gnuplot executable for your system is called something other
+    than simply 'gnuplot' then set the RB_GNUPLOT environment variable to the
+    name of the executable.  This must either be a full path to the gnuplot
+    command or an executable filename that exists in your PATH environment
+    variable.
+    
