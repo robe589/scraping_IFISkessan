@@ -28,9 +28,9 @@ def main()
 		when 0 then#サイトから決算日を読み込み
 			readDateToSite(getDateRenge,storagePath)
 		when 1 then#保有銘柄の決算日を表示
-			showHoldStock(getDateRenge,readFileName,io)
+			showHoldStock(getDateRenge,readFileName,io,storagePath)
 		when 2 then#サイトから取得した全データを表示
-			showAllData(getDateRenge,io)	
+			showAllData(getDateRenge,io,storagePath)	
 		when 3 then#今日が決算日の会社を表示
 			tmpGetDateRenge=Marshal.load(Marshal.dump(getDateRenge))
 			getDateRenge[0]=Marshal.load(Marshal.dump(Date.today))
@@ -94,7 +94,7 @@ def readDateToSite(getDateRenge,storagePath)
 	saveKessanToCsv(getDateRenge,storagePath)
 end
 
-def showHoldStock(getDateRenge,readFileName,io)
+def showHoldStock(getDateRenge,readFileName,io,storagePath)
 	tmpHoldStockList=CSV.read(readFileName)
 	tmpHoldStockList.delete_at(0)
 	holdStockList=Array.new
