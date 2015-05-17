@@ -36,7 +36,7 @@ def main()
 			getDateRenge[0]=Marshal.load(Marshal.dump(Date.today))
 			getDateRenge[1]=Marshal.load(Marshal.dump(Date.today))
 			readDateToSite(getDateRenge,storagePath)
-			showAllData(getDateRenge,io)
+			showAllData(getDateRenge,io,storagePath)
 			getDateRenge=tmpGetDateRenge
 		when 4 then#開始日と終了日を設定
 			#データ取得範囲を設定
@@ -103,7 +103,7 @@ def showHoldStock(getDateRenge,readFileName,io)
 		holdStockList[i]['code']=tmpHoldStockList[i][0].to_i
 		holdStockList[i]['isNot']=true;
 	end
-	error=searchCsv(getDateRenge,holdStockList,io)
+	error=searchCsv(getDateRenge,holdStockList,io,storagePath)
 	if error==-1
 		puts'先にデータを取得してください'
 		return -1
@@ -116,10 +116,10 @@ def showHoldStock(getDateRenge,readFileName,io)
 	end
 end
 
-def showAllData(getDateRenge,io)
+def showAllData(getDateRenge,io,storagePath)
 	holdStockList=Array.new
 	holdStockList[0]='all'
-	error=searchCsv(getDateRenge,holdStockList,io)	
+	error=searchCsv(getDateRenge,holdStockList,io,storagePath)	
 	if error==-1
 		puts'先にデータを取得してください'
 		return -1
@@ -188,7 +188,7 @@ def saveKessanToCsv(getDateRenge,storagePath)
 	end while startDate <= endDate
 end
 
-def searchCsv(getDateRange,searchStockList,io)
+def searchCsv(getDateRange,searchStockList,io,storagePath)
 	startDate=getDateRange[0]
 	endDate=getDateRange[1]
 
@@ -201,9 +201,9 @@ def searchCsv(getDateRange,searchStockList,io)
 	begin
 		isDayShowItem=false
 		dateStr=startDate.strftime("%Y%m%d")
-		#検索
+		#検索"
 		begin 
-			csv=CSV.open('csv/'+dateStr+'.csv',"r") 
+			csv=CSV.open(storagePath+dateStr+'.csv',"r") 
 		rescue Errno::ENOENT
 			return -1;
 		end	
