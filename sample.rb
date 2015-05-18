@@ -129,7 +129,7 @@ end
 def setupDateGetRange()
 	puts('データ取得開始日を入力 入力例:20150516')
 	strStartDate=gets.chomp
-	puts('データ取得開始日を入力')
+	puts('データ取得終了日を入力')
 	strEndDate=gets.chomp
 	if strStartDate.length !=8 or strEndDate.length !=8
 		puts '桁数が異常'
