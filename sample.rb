@@ -95,7 +95,12 @@ def readDateToSite(getDateRenge,storagePath)
 end
 
 def showHoldStock(getDateRenge,readFileName,io,storagePath)
-	tmpHoldStockList=CSV.read(readFileName)
+	begin
+		tmpHoldStockList=CSV.read(readFileName)
+	rescue Errno::ENOENT
+		puts readFileName+'がありません'
+		return -1
+	end 
 	tmpHoldStockList.delete_at(0)
 	holdStockList=Array.new
 	tmpHoldStockList.length.times do |i|
