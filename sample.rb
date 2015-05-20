@@ -214,11 +214,11 @@ def searchCsv(getDateRange,searchStockList,io,storagePath)
 		end	
 		csv.each do |row|
 			if isShowAll==true
-				printCompany(isDayShowItem,io,dateStr,row)
+				isDayShowItem=printCompany(isDayShowItem,io,dateStr,row)
 			else	
 				searchStockList.each do |search|
 					if row[0].to_i ==search['code']#見つかった
-						printCompany(isDayShowItem,io,dateStr,row)
+						isDayShowItem=printCompany(isDayShowItem,io,dateStr,row)
 						search['isNot']=false
 					end
 				end
@@ -231,10 +231,12 @@ end
 
 def printCompany(isDayShowItem,io,dateStr,row)
 	if isDayShowItem ==false 
-		io.print "\n	~"+dateStr+"が決算~\n\n"
+		io.print "	~"+dateStr+"が決算~\n"
 		isDayShowItem=true
 	end
 	io.print "コード:"+row[0] +"名称:"+row[1]+"\n"
+
+	return isDayShowItem
 end
 
 main()
