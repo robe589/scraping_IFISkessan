@@ -33,8 +33,8 @@ def main()
 			showAllData(getDateRenge,io,storagePath)	
 		when 3 then#今日が決算日の会社を表示
 			tmpGetDateRenge=Marshal.load(Marshal.dump(getDateRenge))
-			getDateRenge[0]=Marshal.load(Marshal.dump(Date.today))
-			getDateRenge[1]=Marshal.load(Marshal.dump(Date.today))
+			getDateRenge[0]=Date.today
+			getDateRenge[1]=Date.today
 			readDateToSite(getDateRenge,storagePath)
 			showAllData(getDateRenge,io,storagePath)
 			getDateRenge=tmpGetDateRenge
