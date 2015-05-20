@@ -32,7 +32,7 @@ def main()
 		when 2 then#サイトから取得した全データを表示
 			showAllData(getDateRenge,io,storagePath)	
 		when 3 then#今日が決算日の会社を表示
-			tmpGetDateRenge=Marshal.load(Marshal.dump(getDateRenge))
+			tmpGetDateRenge=getDateRenge.clone
 			getDateRenge[0]=Date.today
 			getDateRenge[1]=Date.today
 			readDateToSite(getDateRenge,storagePath)
