@@ -40,7 +40,7 @@ def main()
 			getDateRenge=tmpGetDateRenge
 		when 4 then#開始日と終了日を設定
 			#データ取得範囲を設定
-			error=setupDateGetRange()
+			error=setupDateGetRange(getDateRenge)
 			if error !=-1
 				getDateRenge=error.dup
 			end
@@ -131,21 +131,35 @@ def showAllData(getDateRenge,io,storagePath)
 	end
 end
 
-def setupDateGetRange()
+def setupDateGetRange(nowGetDateRenge)
 	puts('データ取得開始日を入力 入力例:20150516')
 	strStartDate=gets.chomp
-	puts('データ取得終了日を入力')
-	strEndDate=gets.chomp
-	if strStartDate.length !=8 or strEndDate.length !=8
-		puts '桁数が異常'
+	startDate=calcDate(nowGetDateRenge[0],strStartDate)
+	if startDate ==-1
 		return -1
 	end
-	format='%Y%m%d'
-	startDate=DateTime.strptime(strStartDate,format)
-	endDate=DateTime.strptime(strEndDate,format)
-	dateRange=[startDate,endDate]
+	puts('データ取得終了日を入力')
+	strEndDate=gets.chomp
+	endDate=calcDate(nowGetDateRenge[1],strEndDate)	
+	if endDate== -1
+		return -1
+	end
 
-	return dateRange
+	return [startDate,endDate]
+end
+
+def calcDate(nowGetDate,strInputDate)
+	if strInputDate[0]=='+' or strInputDate[0]=='-' 
+		calcDate=nowGetDate+strInputDate.to_i
+	elsif strInputDate.length !=8 or strInputDate.length !=8
+		puts '桁数が異常'
+		return -1
+	else 
+		format='%Y%m%d'
+		calcDate=DateTime.strptime(strInputDate,format)
+	end
+	
+	return calcDate
 end
 
 def getHtmlData(url)	
