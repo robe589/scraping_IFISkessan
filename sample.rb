@@ -132,7 +132,7 @@ def showAllData(getDateRenge,io,storagePath)
 end
 
 def setupDateGetRange(nowGetDateRenge)
-	puts('データ取得開始日を入力 入力例:20150516')
+	puts('データ取得開始日を入力 入力例:20150516 or ±2')
 	strStartDate=gets.chomp
 	startDate=calcDate(nowGetDateRenge[0],strStartDate)
 	if startDate ==-1
